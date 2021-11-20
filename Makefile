@@ -19,15 +19,19 @@ PROJECT_NAME=lab1
 #find all *.c files in src/lib dirs and add .o suffix to them
 LIB_MODULES=$(addsuffix .o, $(basename $(wildcard $(LIB_PATH)/*/*.c))) 
 
-all: dirs build
+all: build
 
-dirs:
+makedirs:
 	@mkdir -p $(BIN_PATH) $(BUILD_PATH)
 
 %.o: %.c %.h
 	$(CC) $(CCFLAGS) -c $< -o $(BUILD_PATH)/$(notdir $@)
 
-build: $(LIB_MODULES)
+build: makedirs $(LIB_MODULES)
 	$(CC) $(CCFLAGS) $(SRC_PATH)/main.c $(addprefix $(BUILD_PATH)/, $(notdir $^)) -o $(BIN_PATH)/$(PROJECT_NAME)
 
+run:
+	./$(BIN_PATH)/$(PROJECT_NAME)
 
+clean:
+	@rm $(BUILD_PATH)/*
