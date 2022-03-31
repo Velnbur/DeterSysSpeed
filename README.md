@@ -14,7 +14,11 @@ that I choosed for that. For example, this lab work was made for
 ## Build and run
 
 Build:
-> make build
+```shell
+$ make build
+```
 
 Run:
-> make run
+```shell
+$ make run
+```
